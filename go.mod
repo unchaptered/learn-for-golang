@@ -12,6 +12,6 @@ require (
     github.com/unchaptered/learn-for-golang/src/train/loop v1.0.0
 
     github.com/unchaptered/learn-for-golang/src/train/defer v1.0.0
-    
     github.com/unchaptered/learn-for-golang/src/train/panic v1.0.0
+    github.com/unchaptered/learn-for-golang/src/train/recover v1.0.0
 )
