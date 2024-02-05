@@ -6,4 +6,6 @@ func main() {
 	integer_uint_type()
 
 	integer_rune()
+
+	quiz_1_overflow()
 }
