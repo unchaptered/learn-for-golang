@@ -37,8 +37,8 @@ def getPullRequestTemplate(
     # [B] PR Body 생성
     splitedCommand = [
         'git', 'log',
-        f'--pretty=format:"- `%ad` %h **%s** %an"',
-        f'--date=format-local:%y-%m-%d %H:%M',
+        '--pretty=format:"- `%ad` %h **%s** %an"',
+        '--date=format-local:%y-%m-%d %H:%M',
         f'{base}..{head}'
     ]
     print('[getPullRequestTemplate][Logs] : ', splitedCommand)
@@ -64,11 +64,11 @@ def getPullRequestTemplate(
         reponame = reponame.replace('\n', '').replace('.git', '')
 
     pullRequestBody = f"""
-[제목] 제목 변경 필요
-[담당] {','.join(commiterList)}
-[프로젝트] {owner} / {reponame}
-[내용] 작성 필요
-[반영정보]
+[Title] Need to change
+[Asignees] {','.join(commiterList)}
+[Project] {owner} / {reponame}
+[Content] Need to write
+[Logs]
 """
     commitList = out.split('\n')
     for commit in commitList:
@@ -78,8 +78,8 @@ def getPullRequestTemplate(
     # PR Label 생성
     splitedCommand = [
         'git', 'log',
-        f'--pretty=format:%s',
-        f'--date=format-local:%y-%m-%d %H:%M',
+        '--pretty=format:%s',
+        '--date=format-local:%y-%m-%d %H:%M',
         f'{base}..{head}'
     ]
     isSuccess, out, err = splitRunner(splitedCommand=splitedCommand)
@@ -97,12 +97,12 @@ def getPullRequestTemplate(
 
     pullRequestBody += """
     
-[문제] 없음
-[기타]
+[Issue] None
+[ETC]
     """
 
     githubPrTemplate: GitHubPrTemplate = {
-        'title': '제목 변경 필요',
+        'title': 'Need to change',
         'body': pullRequestBody,
         'labelList': labelList,
         'assigneeList': commiterList
@@ -116,8 +116,8 @@ def fetchGitHub(
     base: str = 'main',
     head: str = 'dev'
 ):
-    command = 'git fetch origin main:main'
-    isSuccess, outStr, errStr = runner(command=command)
+    command = f'git fetch origin {base}:{head}'
+    isSuccess, _, errStr = runner(command=command)
     if not isSuccess:
         raise SyntaxError([
             'command syntax occure this error',
@@ -232,21 +232,21 @@ if __name__ == '__main__':
         raise ValueError(
             f'python ./scripts/{sys.argv[0]} <base> <head>에서 head가 누락되었습니다.')
 
-    base = sys.argv[1]
-    head = sys.argv[2]
+    baseBranch = sys.argv[1]
+    headBranch = sys.argv[2]
     # fetchGitHub(base=base,
     #             head=head)
-    hasPr, prList = isExistsPrList(base=base,
-                                   head=head,
-                                   jsonFormat='number,title')
-    requestTemplate = getPullRequestTemplate(base=base,
-                                             head=head)
+    hasExistsPr, existPrList = isExistsPrList(base=baseBranch,
+                                              head=headBranch,
+                                              jsonFormat='number,title')
+    requestTemplate = getPullRequestTemplate(base=baseBranch,
+                                             head=headBranch)
 
-    if hasPr:
-        updatePullRequest(prList=prList,
+    if hasExistsPr:
+        updatePullRequest(prList=existPrList,
                           githubPrTemplate=requestTemplate)
 
     else:
-        createPullRequest(base=base,
-                          head=head,
+        createPullRequest(base=baseBranch,
+                          head=headBranch,
                           githubPrTemplate=requestTemplate)
