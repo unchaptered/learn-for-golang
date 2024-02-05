@@ -6,6 +6,7 @@ func main() {
 
 	switch_conditions()
 	switch_complex_conditions()
+	switch_complex_conditions_2()
 
 	regex_syntax()
 }

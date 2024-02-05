@@ -1,6 +1,6 @@
 package switch_conditions
 
-func switch_complex_conditions(city string) (string, string) {
+func switch_complex_conditions_2(city string) (string, string) {
 	var region string
 	var continent string
 
