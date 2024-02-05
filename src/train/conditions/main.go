@@ -5,4 +5,7 @@ func main() {
 	if_comlex_conditions()
 
 	switch_conditions()
+	switch_complex_conditions()
+
+	regex_syntax()
 }
