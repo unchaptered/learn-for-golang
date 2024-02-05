@@ -9,4 +9,7 @@ func main() {
 	quiz_2_overflow()
 
 	floating_point()
+
+	bool_type()
+	string_type()
 }
