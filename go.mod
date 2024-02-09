@@ -17,5 +17,7 @@ require (
 
     github.com/unchaptered/learn-for-golang/src/train/list v1.0.0
     github.com/unchaptered/learn-for-golang/src/train/map v1.0.0
+
     github.com/unchaptered/learn-for-golang/src/train/type v1.0.0
+    github.com/unchaptered/learn-for-golang/src/train/type_practices v1.0.0
 )
