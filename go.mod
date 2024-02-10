@@ -22,4 +22,6 @@ require (
     github.com/unchaptered/learn-for-golang/src/train/type_practices v1.0.0
 
     github.com/unchaptered/learn-for-golang/src/train/error v1.0.0
+    github.com/unchaptered/learn-for-golang/src/train/logger v1.0.0
+    github.com/unchaptered/learn-for-golang/src/train/logger_framework v1.0.0
 )
