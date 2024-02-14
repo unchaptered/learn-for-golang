@@ -27,4 +27,7 @@ require (
 
     github.com/unchaptered/learn-for-golang/src/train/method v1.0.0
     github.com/unchaptered/learn-for-golang/src/train/interface v1.0.0
+    
+    github.com/unchaptered/learn-for-golang/src/train/concurrency/basic_loop v1.0.0
+    github.com/unchaptered/learn-for-golang/src/train/concurrency/goroutine v1.0.0
 )
